@@ -362,7 +362,24 @@ main{ position:relative; z-index:5; }
 }
 @keyframes scan{ to{ top:110%; } }
 
-.plate-status{ display:flex; align-items:center; justify-content:center; gap:8px; margin:0; font-family:var(--f-mono); font-size:11.5px; color:var(--arc); }
+.plate-status {
+  display: flex;
+  align-items: flex-start; 
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+  font-family: var(--f-mono);
+  font-size: 11px; 
+  line-height: 1.6; 
+  color: var(--arc);
+  max-width: 95%; 
+  text-align: left; 
+}
+
+.plate-status .live-dot {
+  flex-shrink: 0;
+  margin-top: 5px; 
+}
 .plate-name{ text-align:center; font-size:24px; font-weight:700; margin:6px 0 18px; }
 .plate-meta{ list-style:none; padding:16px 0 0; margin:0; border-top:1px solid var(--line); display:grid; gap:9px; }
 .plate-meta li{ display:flex; justify-content:space-between; font-family:var(--f-mono); font-size:11.5px; color:var(--ink-3); }
