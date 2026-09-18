@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Imam Hossain — Full-Stack Engineer, AI Researcher &amp; Embedded Systems</title>
+<meta name="description" content="Imam Hossain — BSc in CSE at IIUC. MERN architecture, Explainable AI research and custom IoT hardware. Chattogram, Bangladesh." />
+<meta name="theme-color" content="#030712" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══ Reactor / circuit background ══ -->
+<canvas id="reactor" aria-hidden="true"></canvas>
+<div class="hud-grid" aria-hidden="true"></div>
+<div class="hud-vignette" aria-hidden="true"></div>
+
+<a class="skip-link" href="#hero">Skip to content</a>
+
+<!-- ══ Boot ══ -->
+<div id="boot" role="status" aria-label="Initialising">
+  <div class="boot-reactor" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+  <pre class="boot-log" id="boot-log"></pre>
+  <div class="boot-bar"><span id="boot-fill"></span></div>
+</div>
+
+<!-- ══ Nav ══ -->
+<header class="nav" id="nav">
+  <a href="#hero" class="logo" aria-label="Imam Hossain, home">
+    <span class="br">&lt;</span><span class="nm">Imam Hossain</span><span class="br"> /&gt;</span>
+    <span class="dot" aria-hidden="true"></span>
+  </a>
+
+  <nav class="nav-links" id="nav-links" aria-label="Sections">
+    <a href="#hero" data-nav="hero">Home</a>
+    <a href="#about" data-nav="about">About</a>
+    <a href="#lab" data-nav="lab">IoT Lab</a>
+    <a href="#skills" data-nav="skills">Skill Matrix</a>
+    <a href="#projects" data-nav="projects">Projects</a>
+    <a href="#research" data-nav="research">Research</a>
+    <a href="#contact" data-nav="contact">Contact</a>
+  </nav>
+
+  <div class="nav-utils">
+    <div class="vol" id="vol" title="Reactor hum — scroll over the ring to set level">
+      <svg viewBox="0 0 44 44" aria-hidden="true">
+        <circle class="vol-track" cx="22" cy="22" r="18" />
+        <circle class="vol-fill" id="vol-fill" cx="22" cy="22" r="18" />
+      </svg>
+      <button id="sound-btn" class="vol-btn" aria-pressed="false" aria-label="Toggle reactor hum">
+        <svg class="ico-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none"/><path d="M19 6a8.5 8.5 0 0 1 0 12" fill="none"/></svg>
+        <svg class="ico-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9.5l5 5M22 9.5l-5 5" fill="none"/></svg>
+      </button>
+      <span class="vol-readout" id="vol-readout">28%</span>
+    </div>
+
+    <div class="telemetry">
+      <span class="tl"><i class="live-dot"></i>Live Viewers <b id="stat-users">18</b></span>
+      <span class="tl">Views <b id="stat-views">1,428</b></span>
+    </div>
+
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress" id="nav-progress" aria-hidden="true"></div>
+</header>
+
+<!-- ══ Left rail ══ -->
+<div class="rail" aria-hidden="true">
+  <div class="rail-line"><i id="rail-fill"></i></div>
+  <ul class="rail-pads">
+    <li data-pad="hero"></li><li data-pad="about"></li><li data-pad="lab"></li>
+    <li data-pad="skills"></li><li data-pad="projects"></li><li data-pad="research"></li>
+    <li data-pad="certificates"></li><li data-pad="contact"></li>
+  </ul>
+</div>
+
+<main>
+
+<!-- ══ HERO ══ -->
+<section id="hero" class="hero" data-section="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="kicker"><i class="live-dot"></i> Chattogram, Bangladesh · reactor online</p>
+      <h1 class="hero-title">
+        <span class="l1">Full-Stack Software Engineer,</span>
+        <span class="l2">AI Researcher &amp;</span>
+        <span class="l3">Embedded Systems Engineer</span>
+      </h1>
+      <p class="hero-sub">
+        Bridging high-performance MERN architecture, Machine Learning, and custom IoT
+        hardware engineering. I write the software, then I build the board it runs on.
+      </p>
+      <div class="cta-row">
+        <a href="#skills" class="btn btn-arc">Explore Skill Reactor</a>
+        <a href="#contact" class="btn btn-crimson">Hire / collaborate</a>
+      </div>
+      <dl class="hero-stats">
+        <div><dt>Software</dt><dd>React · Node.js · Python</dd></div>
+        <div><dt>Hardware</dt><dd>ESP32 · Arduino · EE</dd></div>
+        <div><dt>Security</dt><dd>Kali Linux · Encryption</dd></div>
+      </dl>
+    </div>
+
+    <div class="plate" id="plate">
+      <div class="plate-frame">
+        <div class="plate-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="plate-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="plate-photo" data-fallback="IH">
+          <img src="img/imam-hossain.png" alt="Imam Hossain" width="440" height="440" decoding="async" />
+          <span class="plate-scan" aria-hidden="true"></span>
+        </div>
+        <p class="plate-status"><i class="live-dot"></i> If you expect disappointment, then you can never really be disappointed</p>
+        <p class="plate-name">Imam Hossain</p>
+        <ul class="plate-meta">
+          <li><span>uptime</span><b id="plate-uptime">00:00:00</b></li>
+          <li><span>clock frequency</span><b id="plate-power">192 Hz</b></li>
+          <li><span>clock type</span><b class="ok">neuron</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <a href="#about" class="scroll-hint">scroll<span aria-hidden="true"></span></a>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about" class="sec" data-section="about">
+  <header class="sec-head">
+    <h2>About &amp; philosophy</h2>
+    <p>Software that can explain itself. Hardware that survives the room it runs in.</p>
+  </header>
+  <div class="about-grid">
+    <article class="glass about-main">
+      <p>I am Imam Hossain, a BSc in Computer Science and Engineering student at International Islamic University Chittagong (IIUC). I've always been fascinated by how the digital world interacts with physical reality. My core passion and hobby revolve around electrical project making—building things that actually move, sense, and react.</p>
+      <p>I build in two directions at once. Upward into React, Node.js, Python, and a data layer that stays fast when the traffic is real. Downward into a custom board where a sensor either reads correctly or it doesn't, and no abstraction saves you.</p>
+      <p>Embedded work gives you a hard budget—bytes, milliamps, cycles—so you stop treating resources as infinite. Web and AI work gives you scale, so you stop treating correctness as the finish line. My goal is legibility: a codebase someone else can extend, a machine learning model that shows its reasoning, and a circuit board where you can probe any node and understand the reading.</p>
+    </article>
+    <aside class="about-side">
+      <div class="glass principle"><h3>Electrical Projects</h3><p>My hobby isn't just theory. I actively design and build custom electrical and IoT systems.</p></div>
+      <div class="glass principle"><h3>Security &amp; Encryption</h3><p>Kali Linux, network CMD, and cipher text security are baked into my architecture from day one.</p></div>
+      <div class="glass principle"><h3>Machine Learning</h3><p>Training models to predict and analyze, bridging the gap between raw data and actionable intelligence.</p></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══ IOT LAB ══ -->
+<section id="lab" class="sec" data-section="lab">
+  <header class="sec-head">
+    <h2>Hardware &amp; IoT lab</h2>
+    <p>Select a module. The bus enumerates it, packets start moving down the trace, and the monitor goes live.</p>
+  </header>
+
+  <div class="lab">
+    <div class="lab-board" id="lab-board">
+      <canvas class="trace-layer" id="lab-canvas" aria-hidden="true"></canvas>
+
+      <div class="lab-hub" id="lab-hub">
+        <span class="hub-ring" aria-hidden="true"></span>
+        <span class="hub-ring2" aria-hidden="true"></span>
+        <span class="hub-label">Module<b>BUS</b></span>
+      </div>
+
+      <div class="lab-grid" id="lab-grid">
+        <button class="chip" data-id="esp32" data-pin="GPIO 21/22" data-proto="Wi-Fi + BLE" data-spec="240 MHz dual-core · 520 KB SRAM">
+          <span class="chip-led"></span><span class="chip-pins"></span>
+          <b>ESP32&#8209;WROOM</b><small>controller</small>
+        </button>
+        <button class="chip" data-id="uno" data-pin="D2–D13" data-proto="UART 115200" data-spec="ATmega328P · 16 MHz · 2 KB SRAM">
+          <span class="chip-led"></span><span class="chip-pins"></span>
+          <b>Arduino Uno</b><small>controller</small>
+        </button>
+        <button class="chip" data-id="dht" data-pin="GPIO 4" data-proto="1&#8209;Wire" data-spec="±0.5 °C · ±2 % RH · 0.5 Hz">
+          <span class="chip-led"></span><span class="chip-pins"></span>
+          <b>DHT22</b><small>temp / humidity</small>
+        </button>
+        <button class="chip" data-id="sonar" data-pin="TRIG 5 / ECHO 18" data-proto="pulse timing" data-spec="2–400 cm · 3 mm resolution">
+          <span class="chip-led"></span><span class="chip-pins"></span>
+          <b>HC&#8209;SR04</b><small>ultrasonic</small>
+        </button>
+        <button class="chip" data-id="oled" data-pin="SDA 21 / SCL 22" data-proto="I²C 0x3C" data-spec="128×64 · SSD1306">
+          <span class="chip-led"></span><span class="chip-pins"></span>
+          <b>OLED 0.96&quot;</b><small>display</small>
+        </button>
+        <button class="chip" data-id="lora" data-pin="SPI CS 5" data-proto="LoRa 433 MHz" data-spec="SX1278 · SF9 · ~3 km LOS">
+          <span class="chip-led"></span><span class="chip-pins"></span>
+          <b>SX1278</b><small>long range radio</small>
+        </button>
+        <button class="chip" data-id="servo" data-pin="GPIO 13 PWM" data-proto="50 Hz PWM" data-spec="SG90 · 180° · 1.8 kg·cm">
+          <span class="chip-led"></span><span class="chip-pins"></span>
+          <b>SG90 servo</b><small>actuator</small>
+        </button>
+        <button class="chip" data-id="relay" data-pin="GPIO 26" data-proto="opto-isolated" data-spec="5 V coil · 10 A @ 250 VAC">
+          <span class="chip-led"></span><span class="chip-pins"></span>
+          <b>Relay module</b><small>switching</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="lab-monitor glass">
+      <div class="mon-head">
+        <span class="mon-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="mon-title">serial monitor — 115200 baud</span>
+        <span class="mon-state" id="mon-state">idle</span>
+      </div>
+      <pre class="mon-body" id="mon-body" aria-live="polite"></pre>
+      <div class="mon-meters">
+        <div class="meter"><span>throughput</span><i><b id="m-thru"></b></i></div>
+        <div class="meter"><span>packet loss</span><i><b id="m-loss"></b></i></div>
+        <div class="meter"><span>bus load</span><i><b id="m-load"></b></i></div>
+      </div>
+      <div class="mon-foot">
+        <span id="mon-active">no device selected</span>
+        <button class="mon-clear" id="mon-clear">Clear</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ARC REACTOR SKILL MATRIX ══ -->
+<section id="skills" class="sec" data-section="skills">
+  <header class="sec-head">
+    <h2>Skill Reactor Core </h2>
+    <p>Engage all engineering and technology modules to spin up the core and unlock full system integration.</p>
+  </header>
+
+  <div class="reactor-lab" id="reactor-lab-board">
+    <!-- Trace canvas for electron flow lines -->
+    <canvas class="trace-layer" id="skills-trace-canvas" aria-hidden="true"></canvas>
+
+    <!-- Left Skill Column -->
+    <div class="reactor-skills-col left-col">
+      <button type="button" class="reactor-skill-node" data-id="sk-0" data-index="0">
+        <b>Frontend &amp; UI</b>
+        <small>React / Vite / Tailwind CSS / HTML / JS</small>
+        <i class="node-indicator"></i>
+      </button>
+      <button type="button" class="reactor-skill-node" data-id="sk-1" data-index="1">
+        <b>Backend &amp; Logic</b>
+        <small>Node.js / Python / C / C++</small>
+        <i class="node-indicator"></i>
+      </button>
+      <button type="button" class="reactor-skill-node" data-id="sk-2" data-index="2">
+        <b>Machine Learning</b>
+        <small>Data Models / Predictive Analysis</small>
+        <i class="node-indicator"></i>
+      </button>
+      <button type="button" class="reactor-skill-node" data-id="sk-3" data-index="3">
+        <b>Security &amp; Encryption</b>
+        <small>Cipher Text / Network CMD / Kali Linux</small>
+        <i class="node-indicator"></i>
+      </button>
+    </div>
+
+    <!-- Central Arc Reactor Hub -->
+    <div class="reactor-core-wrap" id="reactor-core-node">
+      <div class="arc-ring outer"></div>
+      <div class="arc-ring inner"></div>
+      <div class="arc-coils-container">
+        <!-- 8 Coils corresponding to 8 skills -->
+        <div class="core-coil" data-index="0"></div>
+        <div class="core-coil" data-index="1"></div>
+        <div class="core-coil" data-index="2"></div>
+        <div class="core-coil" data-index="3"></div>
+        <div class="core-coil" data-index="4"></div>
+        <div class="core-coil" data-index="5"></div>
+        <div class="core-coil" data-index="6"></div>
+        <div class="core-coil" data-index="7"></div>
+      </div>
+      <div class="reactor-center-hub">
+        <div class="hub-glow"></div>
+        <!-- Center Image that reveals upon 100% power -->
+        <a href="https://www.linkedin.com/in/imam-hossain-699720430/" target="_blank" rel="noopener noreferrer" class="reactor-avatar" id="reactor-avatar">
+         <img src="img/imam-hossain.png" alt="Imam Hossain" />
+        </a>
+        <div class="power-readout">
+          <span id="power-percent">0%</span>
+          <small>CORE POWER</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Skill Column -->
+    <div class="reactor-skills-col right-col">
+      <button type="button" class="reactor-skill-node" data-id="sk-4" data-index="4">
+        <b>IoT &amp; Hardware</b>
+        <small>ESP32 / Arduino / Embedded Systems</small>
+        <i class="node-indicator"></i>
+      </button>
+      <button type="button" class="reactor-skill-node" data-id="sk-5" data-index="5">
+        <b>Electrical Engineering</b>
+        <small>Project Making / Circuit Design</small>
+        <i class="node-indicator"></i>
+      </button>
+      <button type="button" class="reactor-skill-node" data-id="sk-6" data-index="6">
+        <b>Networking &amp; OS</b>
+        <small>Linux Administration / Protocol Routing</small>
+        <i class="node-indicator"></i>
+      </button>
+      <button type="button" class="reactor-skill-node" data-id="sk-7" data-index="7">
+        <b>DevOps &amp; Tools</b>
+        <small>Git / Version Control / Deployment</small>
+        <i class="node-indicator"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section id="projects" class="sec" data-section="projects">
+  <header class="sec-head">
+    <h2>Projects &amp; ventures</h2>
+    <p>Explore my featured repositories from GitHub, showcasing Full-Stack, IoT, and AI development.</p>
+  </header>
+
+  <div class="proj-stack">
+
+    <!-- 1. Custom Encryption System -->
+    <article class="glass proj proj-wide">
+      <div class="proj-body">
+        <p class="proj-tag">Live sandbox · cryptography &amp; decryption</p>
+        <h3>Custom encryption &amp; recovery system</h3>
+        <p>A layered substitution–diffusion cipher demonstrating my skills in Cipher text and security. Test real-time keying, diffusion, and paste any ciphertext below with the correct key to instantly recover the original plaintext message.</p>
+
+        <div class="crypt">
+          <label class="fld">
+            <span>Message (Plaintext)</span>
+            <textarea id="crypt-in" rows="2" spellcheck="false" placeholder="Type a secret…">With great power comes great responsibility.</textarea>
+          </label>
+
+          <label class="fld">
+            <span>Key</span>
+            <div class="fld-row">
+              <input id="crypt-key" type="password" spellcheck="false" autocomplete="off" value="arc-reactor" />
+              <button type="button" id="key-reveal" class="tiny" aria-pressed="false">Show</button>
+            </div>
+          </label>
+
+          <div class="crypt-out">
+            <div class="crypt-stage"><span>keyed</span><code id="st-1">—</code></div>
+            <div class="crypt-stage"><span>diffused</span><code id="st-2">—</code></div>
+            <div class="crypt-stage is-final"><span>ciphertext</span><code id="st-3">—</code></div>
+          </div>
+
+          <!-- Added Decryption / Recovery Box -->
+          <label class="fld" style="margin-top: 14px;">
+            <span>Ciphertext to Recover (Paste ciphertext here)</span>
+            <textarea id="decrypt-in" rows="2" spellcheck="false" placeholder="Paste ciphertext to decrypt…"></textarea>
+          </label>
+
+          <div class="crypt-stage" style="margin-top: 8px;">
+            <span style="color: var(--emerald);">recovered</span>
+            <code id="st-decrypted" style="color: var(--emerald); border-color: rgba(46,204,113,0.35); background: rgba(46,204,113,0.06);">—</code>
+          </div>
+
+          <div class="crypt-foot">
+            <span id="crypt-meta">0 bytes · avalanche —</span>
+            <button type="button" id="crypt-copy" class="tiny">Copy ciphertext</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Matro Swiss -->
+    <article class="glass proj">
+      <div class="proj-body">
+        <p class="proj-tag">Fintech · private banking</p>
+        <h3>Matro Swiss </h3>
+        <p>Matro Swiss is a luxury private banking web application blending Zurich's financial precision with a local Bangladeshi touch. Features a minimalist red-and-white aesthetic, interactive debit card vaults, local bank and wallet integrations, real-time fund transfer animations, and crisp mechanical audio feedback.</p>
+        <ul class="points">
+          <li>Minimalist red-and-white Swiss aesthetic with secure debit card vaults</li>
+          <li>Local bank and MFS wallet integrations for instant routing</li>
+        </ul>
+        <ul class="badges"><li>React</li><li>TypeScript</li><li>Tailwind</li></ul>
+        <a href="https://github.com/Imamhossain01/Matro-Swiss" target="_blank" class="btn btn-arc" style="margin-top: 15px; padding: 8px 16px; font-size: 13px;">View on GitHub</a>
+      </div>
+      <div class="proj-visual" data-fallback="MATRO SWISS">
+        <img src="img/matro-swiss.png" alt="Matro Swiss private banking dashboard" width="640" height="720" loading="lazy" decoding="async" />
+      </div>
+    </article>
+
+    <!-- 3. My Dream Penthouse -->
+    <article class="glass proj">
+      <div class="proj-body">
+        <p class="proj-tag">Interactive configurator · real estate</p>
+        <h3>My Dream Penthouse </h3>
+        <p>An immersive real estate customizer where clients can select custom floor plans, luxury interior themes, and bespoke material finishes directly from the web interface to submit precise design orders to builders.</p>
+        <ul class="points">
+          <li>Live 3D-style floor plan and layout customization</li>
+          <li>Real-time investment breakdown and builder order submission pipeline</li>
+        </ul>
+        <ul class="badges"><li>React Vite</li><li>Tailwind</li><li>Frontend</li></ul>
+        <a href="https://github.com/Imamhossain01/My-Dream-Penthouse" target="_blank" class="btn btn-arc" style="margin-top: 15px; padding: 8px 16px; font-size: 13px;">View on GitHub</a>
+      </div>
+      <div class="proj-visual" data-fallback="PENTHOUSE">
+        <img src="img/penthouse.png" alt="My Dream Penthouse architectural configurator" width="640" height="720" loading="lazy" decoding="async" />
+      </div>
+    </article>
+
+    <!-- 4. Bamboo Grove -->
+    <article class="glass proj">
+      <div class="proj-body">
+        <p class="proj-tag">Web app · wellbeing &amp; immersion</p>
+        <h3>Bamboo Grove </h3>
+        <p>Bamboo Grove is an enchanting, interactive nature sanctuary featuring serene bamboo forests, playful pandas, dynamic wind effects, and immersive audio controls. Complete with a 3D forest floor, the experience brings charm to life.</p>
+        <ul class="points">
+          <li>Procedural audio generated live with interactive wind &amp; nature ambience</li>
+          <li>Playful security feature where companion pandas shield their eyes on password inputs</li>
+        </ul>
+        <ul class="badges"><li>React</li><li>JavaScript</li><li>CSS</li></ul>
+        <a href="https://github.com/Imamhossain01/Bamboo-Grove" target="_blank" class="btn btn-arc" style="margin-top: 15px; padding: 8px 16px; font-size: 13px;">View on GitHub</a>
+      </div>
+      <div class="proj-visual" data-fallback="BAMBOO GROVE">
+        <img src="img/bamboo-grove.png" alt="Bamboo Grove sanctuary app interface" width="640" height="720" loading="lazy" decoding="async" />
+      </div>
+    </article>
+
+    <!-- 5. Nirjan -->
+    <article class="glass proj">
+      <div class="proj-body">
+        <p class="proj-tag">Ambient soundboard · focus</p>
+        <h3>Nirjan </h3>
+        <p>Nirjan is a premium, minimalist ambient soundboard web app for focus and relaxation. Features a dark emerald and gold aesthetic, realistic liquid water ripple effects, and seamless audio playback built with vanilla JavaScript.</p>
+        <ul class="points">
+          <li>Multi-track audio mixing for rainfall, thunder, forest, and gentle winds</li>
+          <li>Responsive fluid water ripple animations built from scratch</li>
+        </ul>
+        <ul class="badges"><li>HTML/CSS</li><li>JavaScript</li><li>Web Audio API</li></ul>
+        <a href="https://github.com/Imamhossain01/Nirjan" target="_blank" class="btn btn-arc" style="margin-top: 15px; padding: 8px 16px; font-size: 13px;">View on GitHub</a>
+      </div>
+      <div class="proj-visual" data-fallback="NIRJAN">
+        <img src="img/nirjan.png" alt="Nirjan ambient soundboard interface" width="640" height="720" loading="lazy" decoding="async" />
+      </div>
+    </article>
+    
+    <!-- 6. NIRNOY-Calculator -->
+    <article class="glass proj">
+      <div class="proj-body">
+        <p class="proj-tag">Utility · Web Application</p>
+        <h3>NIRNOY-Calculator </h3>
+        <p>A highly responsive and beautifully designed calculator application capable of handling complex mathematical operations with a sleek, hacker-friendly user interface.</p>
+        <ul class="points">
+          <li>Advanced mathematical parsing and history tracking</li>
+          <li>Neumorphic / Sci-fi design language</li>
+        </ul>
+        <ul class="badges"><li>JavaScript</li><li>CSS</li><li>Logic</li></ul>
+        <a href="https://github.com/Imamhossain01/NIRNOY-Calculator" target="_blank" class="btn btn-arc" style="margin-top: 15px; padding: 8px 16px; font-size: 13px;">View on GitHub</a>
+      </div>
+      <div class="proj-visual" data-fallback="NIRNOY CALC">
+        <img src="img/nirnoy.png" alt="Nirnoy Calculator" width="640" height="720" loading="lazy" decoding="async" />
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ══ RESEARCH ══ -->
+<section id="research" class="sec" data-section="research">
+  <header class="sec-head">
+    <h2>Research — Machine Learning &amp; AI</h2>
+    <p>A diagnostic model is only useful when a clinician can audit the reasoning behind it.</p>
+  </header>
+
+  <div class="papers">
+    <article class="glass paper">
+      <p class="paper-state"><i class="live-dot"></i> Research Paper</p>
+      <h3>Multi-Class Psychological Distress Prediction</h3>
+      <p>An explainable multi-tier fusion stacking framework utilizing gradient boosting models and SHAP for accurate prediction of depression, anxiety, and stress levels.</p>
+      <ul class="badges"><li>Explainable AI</li><li>Ensemble Learning</li><li>Python</li></ul>
+      <a href="img/res1.pdf" target="_blank" class="btn btn-crimson" style="margin-top:15px; align-self:flex-start; padding: 6px 12px; font-size: 12px;">View Paper</a>
+    </article>
+
+    <article class="glass paper">
+      <p class="paper-state"><i class="live-dot"></i> Research Paper</p>
+      <h3>Cardiovascular Disease Prediction</h3>
+      <p>An adaptive multi-model fusion framework utilizing a tri-architecture tree-ensemble, SMOTE data augmentation, and dual-stage XAI (Tree-SHAP & Tabular LIME) for transparent clinical risk assessment.</p>
+      <ul class="badges"><li>Machine Learning</li><li>Predictive AI</li><li>Health Tech</li></ul>
+      <a href="img/res2.pdf" target="_blank" class="btn btn-crimson" style="margin-top:15px; align-self:flex-start; padding: 6px 12px; font-size: 12px;">View Paper</a>
+    </article>
+
+    <article class="glass paper">
+      <p class="paper-state"><i class="live-dot"></i> Highlighted Repository</p>
+      <h3>Home Automation with Door Security</h3>
+      <p>Where both halves of the work meet: running custom embedded code on an ESP32 for a highly secure, automated IoT home security system.</p>
+      <ul class="badges"><li>ESP32</li><li>IoT &amp; Security</li><li>C++</li></ul>
+      <a href="https://github.com/Imamhossain01/Home-automation-with-door-security-via-esp-32" target="_blank" class="btn btn-crimson" style="margin-top:15px; align-self:flex-start; padding: 6px 12px; font-size: 12px;">View Repo</a>
+    </article>
+  </div>
+</section>
+
+
+<!-- ══ CERTIFICATES ══ -->
+<section id="certificates" class="sec" data-section="certificates">
+  <header class="sec-head">
+    <h2>Certificates <span class="bn">/ Archive</span></h2>
+    <p>Browse my original certificates. Click on any thumbnail to view it full screen.</p>
+  </header>
+
+  <div class="cert-gallery-container">
+    <!-- Scrollable Thumbnails (Marquee) -->
+    <div class="cert-marquee-wrapper">
+      <div class="cert-marquee-track">
+        <!-- Original 8 Items -->
+        <div class="cert-thumb" data-src="img/cert1.png"><img src="img/cert1.png" alt="Certificate 1" /></div>
+        <div class="cert-thumb" data-src="img/cert2.png"><img src="img/cert2.png" alt="Certificate 2" /></div>
+        <div class="cert-thumb" data-src="img/cert3.png"><img src="img/cert3.png" alt="Certificate 3" /></div>
+        <div class="cert-thumb" data-src="img/cert4.png"><img src="img/cert4.png" alt="Certificate 4" /></div>
+        <div class="cert-thumb" data-src="img/cert5.png"><img src="img/cert5.png" alt="Certificate 5" /></div>
+        <div class="cert-thumb" data-src="img/cert6.png"><img src="img/cert6.png" alt="Certificate 6" /></div>
+        <div class="cert-thumb" data-src="img/cert7.png"><img src="img/cert7.png" alt="Certificate 7" /></div>
+        <div class="cert-thumb" data-src="img/cert8.png"><img src="img/cert8.png" alt="Certificate 8" /></div>
+        
+        <!-- Duplicated 8 Items for infinite smooth marquee -->
+        <div class="cert-thumb" data-src="img/cert1.png"><img src="img/cert1.png" alt="Certificate 1" /></div>
+        <div class="cert-thumb" data-src="img/cert2.png"><img src="img/cert2.png" alt="Certificate 2" /></div>
+        <div class="cert-thumb" data-src="img/cert3.png"><img src="img/cert3.png" alt="Certificate 3" /></div>
+        <div class="cert-thumb" data-src="img/cert4.png"><img src="img/cert4.png" alt="Certificate 4" /></div>
+        <div class="cert-thumb" data-src="img/cert5.png"><img src="img/cert5.png" alt="Certificate 5" /></div>
+        <div class="cert-thumb" data-src="img/cert6.png"><img src="img/cert6.png" alt="Certificate 6" /></div>
+        <div class="cert-thumb" data-src="img/cert7.png"><img src="img/cert7.png" alt="Certificate 7" /></div>
+        <div class="cert-thumb" data-src="img/cert8.png"><img src="img/cert8.png" alt="Certificate 8" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Fullscreen Lightbox Modal -->
+<div class="cert-lightbox" id="cert-lightbox">
+  <span class="cert-lightbox-close" id="cert-lightbox-close">&times;</span>
+  <img src="" alt="Fullscreen Certificate" id="cert-lightbox-img" />
+</div>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact" class="sec" data-section="contact">
+  <header class="sec-head">
+    <h2>Let's talk</h2>
+    <p>Hardware problem, web build, machine learning integration, or exploring my latest GitHub repo.</p>
+  </header>
+
+  <div class="contact">
+    <form class="terminal" id="contact-form" novalidate>
+      <div class="term-head">
+        <span class="mon-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>imam@stark: ~/inbox</span>
+      </div>
+      <div class="term-body">
+        <label class="tline"><span class="prompt">visitor@hud:~$</span>
+          <input name="name" id="f-name" placeholder="your name" autocomplete="name" required />
+        </label>
+        <label class="tline"><span class="prompt">reply-to:</span>
+          <input name="email" id="f-email" type="email" placeholder="you@domain.com" autocomplete="email" required />
+        </label>
+        <label class="tline tline-area"><span class="prompt">message:</span>
+          <textarea name="message" id="f-msg" rows="5" placeholder="what are you building?" required></textarea>
+        </label>
+        <p class="term-error" id="f-error" role="alert"></p>
+        <div class="term-foot">
+          <span class="caret" aria-hidden="true">▊</span>
+          <button type="submit" class="btn btn-arc btn-send" id="f-send">Send transmission</button>
+        </div>
+      </div>
+    </form>
+
+    <aside class="contact-side">
+      <a class="glass link-card" id="link-wa" href="https://wa.me/8801867105020" target="_blank" rel="noopener">
+        <b>WhatsApp</b><span>01867105020 — Fastest reply</span>
+      </a>
+      <a class="glass link-card" id="link-phone" href="tel:+8801867105020">
+        <b>Phone</b><span>01867105020 — Direct Line</span>
+      </a>
+      <a class="glass link-card" id="link-mail" href="mailto:rsimam100@gmail.com">
+        <b>Email</b><span>rsimam100@gmail.com</span>
+      </a>
+      <div class="glass loc-card">
+        <p class="loc-badge"><i class="live-dot"></i> Chattogram, Bangladesh</p>
+        <p class="loc-time">Local time <b id="loc-time">—</b> · UTC+6</p>
+        <p class="loc-note">Open to remote collaboration across time zones.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <p class="foot-logo"><span class="br">&lt;</span> Imam Hossain <span class="br">/&gt;</span></p>
+  <p class="foot-note">Hand-written HTML, CSS and JavaScript. Built with high-performance Web APIs.</p>
+  <p class="foot-meta"><span id="foot-fps">—</span> · <span id="foot-year"></span></p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ══ Transmission surge overlay (contact form send) ══ -->
+<div class="transmit-fx" id="transmit-fx" aria-hidden="true">
+  <span class="transmit-beam"></span>
+  <span class="transmit-pulse"></span>
+  <span class="transmit-grid"></span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
