@@ -1102,6 +1102,40 @@
     timeEl.textContent = now.toLocaleTimeString('en-US', options);
   }
 
+   /* ── 16. Live Viewers & Views Counter (2-30 range) ─────── */
+(function initTelemetryCounters() {
+  const usersEl = document.getElementById('stat-users');
+  const viewsEl = document.getElementById('stat-views');
+  if (!usersEl || !viewsEl) return;
+
+  // Initial random live viewers between 2 and 30
+  let currentViewers = Math.floor(Math.random() * 29) + 2;
+  // Initial total views
+  let totalViews = 1428;
+
+  usersEl.textContent = currentViewers;
+  viewsEl.textContent = totalViews.toLocaleString();
+
+  // Update Live Viewers every 5 seconds randomly (range 2 to 30)
+  setInterval(() => {
+    // Add or subtract a random number (-4 to +4), keeping it strictly between 2 and 30
+    const fluctuation = Math.floor(Math.random() * 9) - 4;
+    currentViewers = Math.min(Math.max(currentViewers + fluctuation, 2), 30);
+
+    // Smooth transition effect
+    usersEl.classList.add('updating');
+    setTimeout(() => {
+      usersEl.textContent = currentViewers;
+      usersEl.classList.remove('updating');
+    }, 300);
+
+    // Occasionally increase total views
+    if (Math.random() > 0.4) {
+      totalViews += Math.floor(Math.random() * 3) + 1;
+      viewsEl.textContent = totalViews.toLocaleString();
+    }
+  }, 5000);
+})();
   updateTime();
   setInterval(updateTime, 1000);
 })();
