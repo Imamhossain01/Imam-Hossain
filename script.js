@@ -1102,40 +1102,55 @@
     timeEl.textContent = now.toLocaleTimeString('en-US', options);
   }
 
-   /* ── 16. Live Viewers & Views Counter (2-30 range) ─────── */
+   /* ── 16. Date-based Incrementing Views & Live Viewers ──────── */
 (function initTelemetryCounters() {
   const usersEl = document.getElementById('stat-users');
   const viewsEl = document.getElementById('stat-views');
   if (!usersEl || !viewsEl) return;
 
-  // Initial random live viewers between 2 and 30
+  const todayStr = new Date().toISOString().slice(0, 10);
+  
+  let savedDate = localStorage.getItem('ih_view_date');
+  let baseViews = parseInt(localStorage.getItem('ih_base_views'), 10);
+
+  if (!savedDate || !baseViews) {
+    baseViews = 1428; 
+    localStorage.setItem('ih_view_date', todayStr);
+    localStorage.setItem('ih_base_views', baseViews);
+  } else if (savedDate !== todayStr) {ে
+    const daysPassed = Math.floor((new Date(todayStr) - new Date(savedDate)) / (1000 * 60 * 60 * 24));
+    if (daysPassed > 0) {
+      const dailyIncrement = daysPassed * (Math.floor(Math.random() * 9) + 48);
+      baseViews += dailyIncrement;
+      localStorage.setItem('ih_view_date', todayStr);
+      localStorage.setItem('ih_base_views', baseViews);
+    }
+  }
+
+  let sessionExtraViews = parseInt(sessionStorage.getItem('ih_session_views') || '0', 10);
+  let totalViews = baseViews + sessionExtraViews;
+
   let currentViewers = Math.floor(Math.random() * 29) + 2;
-  // Initial total views
-  let totalViews = 1428;
 
   usersEl.textContent = currentViewers;
   viewsEl.textContent = totalViews.toLocaleString();
 
-  // Update Live Viewers every 5 seconds randomly (range 2 to 30)
   setInterval(() => {
-    // Add or subtract a random number (-4 to +4), keeping it strictly between 2 and 30
     const fluctuation = Math.floor(Math.random() * 9) - 4;
     currentViewers = Math.min(Math.max(currentViewers + fluctuation, 2), 30);
 
-    // Smooth transition effect
     usersEl.classList.add('updating');
     setTimeout(() => {
       usersEl.textContent = currentViewers;
       usersEl.classList.remove('updating');
     }, 300);
-
-    // Occasionally increase total views
-    if (Math.random() > 0.4) {
-      totalViews += Math.floor(Math.random() * 3) + 1;
+ো
+    if (Math.random() > 0.3) {
+      const addViews = Math.floor(Math.random() * 2) + 1;
+      sessionExtraViews += addViews;
+      sessionStorage.setItem('ih_session_views', sessionExtraViews);
+      totalViews = baseViews + sessionExtraViews;
       viewsEl.textContent = totalViews.toLocaleString();
     }
   }, 5000);
-})();
-  updateTime();
-  setInterval(updateTime, 1000);
 })();
