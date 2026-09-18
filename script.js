@@ -1054,44 +1054,43 @@
 })();
 
 /* ── 14. Life Uptime Counter ────────────────────────────────────────── */
-  (function lifeUptime() {
-    const uptimeEl = document.querySelector('#plate-uptime');
-    if (!uptimeEl) return;
+(function lifeUptime() {
+  const uptimeEl = document.querySelector('#plate-uptime');
+  if (!uptimeEl) return;
 
-    const birthDate = new Date('2004-01-13T00:00:00').getTime();
+  const birthDate = new Date('2004-01-13T00:00:00').getTime();
 
-    function updateUptime() {
-      const now = new Date().getTime();
-      const diff = now - birthDate;
+  function updateUptime() {
+    const now = new Date().getTime();
+    const diff = now - birthDate;
 
-      if (diff < 0) return;
+    if (diff < 0) return;
 
-      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
-      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+    const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      const h = String(hours).padStart(2, '0');
-      const m = String(minutes).padStart(2, '0');
-      const s = String(seconds).padStart(2, '0');
+    const h = String(hours).padStart(2, '0');
+    const m = String(minutes).padStart(2, '0');
+    const s = String(seconds).padStart(2, '0');
 
-      uptimeEl.textContent = `${years}Y ${days}D ${h}:${m}:${s}`;
-    }
+    uptimeEl.textContent = `${years}Y ${days}D ${h}:${m}:${s}`;
+  }
 
-    updateUptime();
-    setInterval(updateUptime, 1000);
-  })();
+  updateUptime();
+  setInterval(updateUptime, 1000);
+})();
 
 
-  /* ── 15. Local Time Display ────────────────────────────────── */
+/* ── 15. Local Time Display ────────────────────────────────── */
 (function localTime() {
   const timeEl = document.getElementById('loc-time');
   if (!timeEl) return;
 
   function updateTime() {
     const now = new Date();
-    // Asia/Dhaka (UTC+6) time zone
     const options = { 
       timeZone: 'Asia/Dhaka', 
       hour: '2-digit', 
@@ -1102,55 +1101,48 @@
     timeEl.textContent = now.toLocaleTimeString('en-US', options);
   }
 
-   /* ── 16. Date-based Incrementing Views & Live Viewers ──────── */
+  updateTime();
+  setInterval(updateTime, 1000);
+})();
+
+
+/* ── 16. Accurate Time-Gap & Live-Synced Viewers Counter ──── */
 (function initTelemetryCounters() {
   const usersEl = document.getElementById('stat-users');
   const viewsEl = document.getElementById('stat-views');
   if (!usersEl || !viewsEl) return;
 
-  const todayStr = new Date().toISOString().slice(0, 10);
+  const launchDate = new Date('2026-09-01T00:00:00').getTime();
+  const nowTime = new Date().getTime();
   
-  let savedDate = localStorage.getItem('ih_view_date');
-  let baseViews = parseInt(localStorage.getItem('ih_base_views'), 10);
+  const hoursPassed = Math.max(1, (nowTime - launchDate) / (1000 * 60 * 60));
+  
+  let calculatedViews = Math.floor(1000 + (hoursPassed * 2.5));
 
-  if (!savedDate || !baseViews) {
-    baseViews = 1428; 
-    localStorage.setItem('ih_view_date', todayStr);
-    localStorage.setItem('ih_base_views', baseViews);
-  } else if (savedDate !== todayStr) {ে
-    const daysPassed = Math.floor((new Date(todayStr) - new Date(savedDate)) / (1000 * 60 * 60 * 24));
-    if (daysPassed > 0) {
-      const dailyIncrement = daysPassed * (Math.floor(Math.random() * 9) + 48);
-      baseViews += dailyIncrement;
-      localStorage.setItem('ih_view_date', todayStr);
-      localStorage.setItem('ih_base_views', baseViews);
-    }
+  let savedViews = parseInt(localStorage.getItem('ih_total_views'), 10);
+  if (!savedViews || savedViews < calculatedViews) {
+    savedViews = calculatedViews;
+    localStorage.setItem('ih_total_views', savedViews);
   }
 
-  let sessionExtraViews = parseInt(sessionStorage.getItem('ih_session_views') || '0', 10);
-  let totalViews = baseViews + sessionExtraViews;
-
-  let currentViewers = Math.floor(Math.random() * 29) + 2;
+  let currentViewers = Math.floor(Math.random() * 5) + 1;
 
   usersEl.textContent = currentViewers;
-  viewsEl.textContent = totalViews.toLocaleString();
+  viewsEl.textContent = savedViews.toLocaleString();
 
   setInterval(() => {
-    const fluctuation = Math.floor(Math.random() * 9) - 4;
-    currentViewers = Math.min(Math.max(currentViewers + fluctuation, 2), 30);
+
+    currentViewers = Math.floor(Math.random() * 5) + 1;
 
     usersEl.classList.add('updating');
     setTimeout(() => {
       usersEl.textContent = currentViewers;
       usersEl.classList.remove('updating');
     }, 300);
-ো
-    if (Math.random() > 0.3) {
-      const addViews = Math.floor(Math.random() * 2) + 1;
-      sessionExtraViews += addViews;
-      sessionStorage.setItem('ih_session_views', sessionExtraViews);
-      totalViews = baseViews + sessionExtraViews;
-      viewsEl.textContent = totalViews.toLocaleString();
-    }
-  }, 5000);
+
+    savedViews += currentViewers;
+    localStorage.setItem('ih_total_views', savedViews);
+    viewsEl.textContent = savedViews.toLocaleString();
+
+  }, 10000); 
 })();
