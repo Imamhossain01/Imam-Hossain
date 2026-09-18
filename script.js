@@ -1082,3 +1082,26 @@
     updateUptime();
     setInterval(updateUptime, 1000);
   })();
+
+
+  /* ── 15. Local Time Display ────────────────────────────────── */
+(function localTime() {
+  const timeEl = document.getElementById('loc-time');
+  if (!timeEl) return;
+
+  function updateTime() {
+    const now = new Date();
+    // Asia/Dhaka (UTC+6) time zone
+    const options = { 
+      timeZone: 'Asia/Dhaka', 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit', 
+      hour12: true 
+    };
+    timeEl.textContent = now.toLocaleTimeString('en-US', options);
+  }
+
+  updateTime();
+  setInterval(updateTime, 1000);
+})();
