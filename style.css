@@ -1041,6 +1041,16 @@ main{ position:relative; z-index:5; }
   color: var(--arc);
 }
 
+/* ── Telemetry Live & Views Counter Animation ── */
+.telemetry b {
+  display: inline-block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.telemetry b.updating {
+  opacity: 0.3;
+  transform: translateY(-3px);
+}
 @media (max-width: 640px) {
   .cert-thumb { width: 110px; height: 85px; }
 }
