@@ -1055,3 +1055,69 @@ main{ position:relative; z-index:5; }
 @media (max-width: 640px) {
   .cert-thumb { width: 110px; height: 85px; }
 }
+
+
+
+
+/* ── Fully Optimized Mobile Responsive Fixes ── */
+@media (max-width: 1080px) {
+  .nav-links { display: none; }
+  .burger { display: block; }
+  .nav-links.open {
+    display: flex; flex-direction: column; gap: 4px;
+    position: fixed; inset: var(--nav-h) 0 auto; padding: 18px var(--pad) 26px;
+    background: rgba(3,7,18,.97); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    z-index: 101;
+  }
+  .nav-links.open a { padding: 12px 14px; font-size: 15px; }
+  .lab, .contact, .about-grid { grid-template-columns: 1fr; }
+  .lab-monitor { min-height: 340px; }
+}
+
+@media (max-width: 900px) {
+  .reactor-lab { 
+    grid-template-columns: 1fr; 
+    gap: 20px; 
+    padding: 24px 14px; 
+  }
+  .reactor-skills-col { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 10px; 
+  }
+  .reactor-skills-col.right-col .reactor-skill-node { text-align: left; }
+  .reactor-skills-col.right-col .node-indicator { right: 12px; left: auto; }
+  #skills-trace-canvas { display: none; }
+  .reactor-core-wrap { width: 220px; height: 220px; margin: 10px auto; }
+}
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .plate { max-width: 380px; margin-inline: auto; width: 100%; }
+  .proj { grid-template-columns: 1fr; }
+  .proj-visual { min-height: 220px; border-left: 0; border-top: 1px solid var(--line); order: -1; }
+  .telemetry { display: none; }
+}
+
+@media (max-width: 640px) {
+  :root { --pad: 14px; }
+  .sec { padding: 48px var(--pad); }
+  .hero { padding-top: calc(var(--nav-h) + 20px); }
+  .hero-title { font-size: 28px; }
+  .reactor-skills-col { grid-template-columns: 1fr; }
+  .reactor-core-wrap { width: 190px; height: 190px; }
+  .lab-grid { grid-template-columns: 1fr; }
+  .lab-hub { display: none; }
+  #lab-canvas { display: none; }
+  .hero-stats { display: grid; grid-template-columns: 1fr; gap: 10px; border-top: none; }
+  .hero-stats div { padding: 0; margin: 0; border: none; }
+  .crypt-stage { grid-template-columns: 1fr; gap: 5px; }
+  .crypt-stage span { padding-top: 0; }
+  .tline { grid-template-columns: 1fr; gap: 5px; }
+  .term-foot { flex-direction: column; align-items: stretch; }
+  .btn-send { margin-left: 0; width: 100%; }
+  .caret { display: none; }
+  .cert-thumb { width: 110px; height: 85px; }
+  .mon-meters { grid-template-columns: 1fr; }
+}
