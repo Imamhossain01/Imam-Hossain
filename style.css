@@ -1097,7 +1097,11 @@ main{ position:relative; z-index:5; }
   .plate { max-width: 380px; margin-inline: auto; width: 100%; }
   .proj { grid-template-columns: 1fr; }
   .proj-visual { min-height: 220px; border-left: 0; border-top: 1px solid var(--line); order: -1; }
-  .telemetry { display: none; }
+  .telemetry { 
+    display: flex; 
+    font-size: 9px; 
+    gap: 2px; 
+  }
 }
 
 @media (max-width: 640px) {
