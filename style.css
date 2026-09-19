@@ -239,7 +239,7 @@ main{ position:relative; z-index:5; }
 .nav-links a:hover{ color:var(--ink); background:rgba(0,242,254,.08); }
 .nav-links a.active{ color:var(--arc); background:rgba(0,242,254,.12); box-shadow:inset 0 -2px 0 var(--arc); }
 
-.nav-utils{ display:flex; align-items:center; gap:16px; flex:none; }
+.nav-utils { display: flex; align-items: center; gap: 16px; flex: none; margin-left: auto;}
 
 /* Fixed Sound Button Layout & Icon Centering */
 .vol{ position:relative; width:44px; height:44px; flex:none; display:grid; place-items:center; }
