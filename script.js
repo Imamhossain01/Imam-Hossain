@@ -685,7 +685,7 @@
 
       if (activeCount === totalSkills) {
         coreNode.classList.add('fully-charged');
-        toast('Arc Reactor Core at 100% — Full Integration Unlocked!');
+        toast('Skill Reactor Core at 100% — Full Integration Unlocked!');
       } else {
         coreNode.classList.remove('fully-charged');
       }
