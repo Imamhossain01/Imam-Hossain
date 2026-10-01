@@ -1056,12 +1056,6 @@ main{ position:relative; z-index:5; }
   .cert-thumb { width: 110px; height: 85px; }
 }
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 44b601f8ffab0a550acce25d23fd5292781c5dfb
 /* ── Fully Optimized Mobile Responsive Fixes ── */
 @media (max-width: 1080px) {
   .nav-links { display: none; }
@@ -1127,8 +1121,4 @@ main{ position:relative; z-index:5; }
   .caret { display: none; }
   .cert-thumb { width: 110px; height: 85px; }
   .mon-meters { grid-template-columns: 1fr; }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 44b601f8ffab0a550acce25d23fd5292781c5dfb
