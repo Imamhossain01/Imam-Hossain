@@ -1056,6 +1056,9 @@ main{ position:relative; z-index:5; }
   .cert-thumb { width: 110px; height: 85px; }
 }
 
+
+
+
 /* ── Fully Optimized Mobile Responsive Fixes ── */
 @media (max-width: 1080px) {
   .nav-links { display: none; }
