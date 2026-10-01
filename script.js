@@ -685,7 +685,7 @@
 
       if (activeCount === totalSkills) {
         coreNode.classList.add('fully-charged');
-        toast('Arc Reactor Core at 100% — Full Integration Unlocked!');
+        toast('Skill Reactor Core at 100% — Full Integration Unlocked!');
       } else {
         coreNode.classList.remove('fully-charged');
       }
@@ -1145,4 +1145,8 @@
     viewsEl.textContent = savedViews.toLocaleString();
 
   }, 10000); 
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> 44b601f8ffab0a550acce25d23fd5292781c5dfb
