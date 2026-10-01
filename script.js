@@ -1145,8 +1145,4 @@
     viewsEl.textContent = savedViews.toLocaleString();
 
   }, 10000); 
-<<<<<<< HEAD
 })();
-=======
-})();
->>>>>>> 44b601f8ffab0a550acce25d23fd5292781c5dfb
